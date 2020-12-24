@@ -1,43 +1,45 @@
 import React from "react";
-import {
-  Angular,
-  C,
-  CSharp,
-  Cpp,
-  Dart,
-  Flutter,
-  Go,
-  Java,
-  Kotlin,
-  Python,
-  React1,
-  Swift,
-  Vue,
-  // @ts-ignore
-} from "../flairs";
-
+import { Image } from "react-native";
 interface FlairProps {
   size?: number;
-  name: keyof typeof flairToComponent;
+  name: keyof typeof flairMap;
 }
 
-const flairToComponent = {
-  angular: Angular,
-  c: C,
-  cSharp: CSharp,
-  cpp: Cpp,
-  dart: Dart,
-  flutter: Flutter,
-  go: Go,
-  java: Java,
-  kotlin: Kotlin,
-  python: Python,
-  react: React1,
-  swift: Swift,
-  vue: Vue,
+export const flairMap = {
+  kubernetes: "kubernetes.png",
+  python: "python.png",
+  flutter: "flutter.png",
+  angular: "angular.png",
+  cpp: "cpp.png",
+  haskell: "haskell.png",
+  java: "java.png",
+  rust: "rust.png",
+  vue: "vue.png",
+  javascript: "javascript.png",
+  go: "go.png",
+  cSharp: "cSharp.png",
+  html: "html.png",
+  swift: "swift.png",
+  react: "react.png",
+  kafka: "kafka.png",
+  c: "c.png",
+  typescript: "typescript.png",
+  css: "css.png",
+  dart: "dart.png",
+  svelte: "svelte.png",
+  kotlin: "kotlin.png",
 };
 
 export const Flair: React.FC<FlairProps> = ({ size = 24, name }) => {
-  const Comp = flairToComponent[name];
-  return Comp ? <Comp width={size} height={size} /> : null;
+  if (!(name in flairMap)) {
+    return null;
+  }
+  return (
+    <Image
+      source={{
+        uri: `https://flair.benawad.com/` + flairMap[name],
+      }}
+      style={{ height: size, width: size }}
+    />
+  );
 };

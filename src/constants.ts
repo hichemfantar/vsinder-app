@@ -1,4 +1,5 @@
 import { ProfileFormData } from "./types";
+import { flairMap } from "./ui/Flair";
 
 export const THEMES = [
   {
@@ -608,20 +609,9 @@ export const initialProfileData: ProfileFormData = {
   sendNotifs: true,
 };
 
-export const flairs = [
-  "angular",
-  "c",
-  "cSharp",
-  "cpp",
-  "dart",
-  "flutter",
-  "go",
-  "java",
-  "kotlin",
-  "python",
-  "react",
-  "swift",
-  "vue",
-];
-
-export const flairOptions = flairs.map((value) => ({ value, label: value }));
+export const flairOptions = (Object.keys(flairMap) as string[]).map(
+  (value) => ({
+    value,
+    label: value,
+  })
+);
